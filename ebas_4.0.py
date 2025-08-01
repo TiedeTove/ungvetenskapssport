@@ -115,7 +115,7 @@ n_orgs = len(forening_list)
 ncols = 4
 nrows = 2
 fig_all_static, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=(16, 4 * nrows))
-fig_all_static.suptitle(f"{months[latest_month-1]}", fontsize=18, y=0.98)
+fig_all_static.suptitle(f"{months[latest_month-1].capitalize()}", fontsize=18, y=0.98)
 axes = axes.flatten()
 
 for idx, target_forening in enumerate(forening_list):
@@ -185,7 +185,7 @@ plt.savefig(r"C:\Users\Tove Tiedemann\Desktop\medlemmar_alla_static_test.png", b
 plt.show()
 
 # Animated GIFs for each organisation
-month_range = range(1, 8)  # January to July
+month_range = range(1,month+1)  # January to July
 
 for target_forening in forening_list:
     ebas_with_coords_f = ebas_with_coords[ebas_with_coords['Förening'] == target_forening].copy()
@@ -263,3 +263,8 @@ ani_all = animation.FuncAnimation(fig, update_all, frames=len(month_range), inte
 plt.subplots_adjust(bottom=0.15)
 ani_all.save(r"C:\Users\Tove Tiedemann\Desktop\medlemmar_sverige_alla.gif", writer="pillow")
 plt.close(fig)
+
+# Print the number of members in Uppsala for UVS Fysiker
+org_cities = ebas_with_coords[ebas_with_coords['Förening'] == "Ung Vetenskapssports Fysiker"]
+uppsala_count = org_cities[org_cities['Stad/Ort'] == "Uppsala"].shape[0]
+print("UVS Fysiker i Uppsala:", uppsala_count)
