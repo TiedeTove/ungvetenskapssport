@@ -106,7 +106,7 @@ world = gpd.read_file(r"C:\Users\Tove Tiedemann\Documents\Bachelor - UU\ne_10m_a
 sweden = world[world['NAME_SV'] == 'Sverige']
 
 # Static grid plot for latest month
-latest_month = 7  # Juli
+latest_month = month_idx  # Use the month chosen by the user
 year = ebas_with_coords['Inskriven'].dt.year.min()
 last_day = monthrange(year, latest_month)[1]
 end_date = pd.Timestamp(year=year, month=latest_month, day=last_day)
